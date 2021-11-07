@@ -1,21 +1,21 @@
-(function ($) {
+(function($) {
     "use strict";
 
     /* ..............................................
     Loader
     ................................................. */
 
-    $(window).on('load', function () {
+    $(window).on('load', function() {
         $('.preloader').fadeOut();
         $('#preloader').delay(100).fadeOut('slow');
-        $('body').delay(50).css({'overflow': 'visible'});
+        $('body').delay(50).css({ 'overflow': 'visible' });
     });
 
     /* ..............................................
     Navbar Bar
     ................................................. */
 
-    $('.navbar-nav .nav-link').on('click', function () {
+    $('.navbar-nav .nav-link').on('click', function() {
         var toggle = $('.navbar-toggler').is(':visible');
         if (toggle) {
             $('.navbar-collapse').collapse('hide');
@@ -26,7 +26,7 @@
     Fixed Menu
     ................................................. */
 
-    $(window).on('scroll', function () {
+    $(window).on('scroll', function() {
         if ($(window).scrollTop() > 50) {
             $('.top-header').addClass('fixed-menu');
         } else {
@@ -50,24 +50,22 @@
     ................................................. */
 
     $(".rslides").responsiveSlides({
-        auto: true,             // Boolean: Animate automatically, true or false
-        speed: 500,            // Integer: Speed of the transition, in milliseconds
-        timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
-        pager: false,           // Boolean: Show pager, true or false
-        nav: false,             // Boolean: Show navigation, true or false
-        random: false,          // Boolean: Randomize the order of the slides, true or false
-        pause: false,           // Boolean: Pause on hover, true or false
-        pauseControls: true,    // Boolean: Pause when hovering controls, true or false
-        prevText: "Previous",   // String: Text for the "previous" button
-        nextText: "Next",       // String: Text for the "next" button
-        maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
-        navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
-        manualControls: "",     // Selector: Declare custom pager navigation
-        namespace: "rslides",   // String: Change the default namespace used
-        before: function () {
-        },   // Function: Before callback
-        after: function () {
-        }     // Function: After callback
+        auto: true, // Boolean: Animate automatically, true or false
+        speed: 500, // Integer: Speed of the transition, in milliseconds
+        timeout: 4000, // Integer: Time between slide transitions, in milliseconds
+        pager: false, // Boolean: Show pager, true or false
+        nav: false, // Boolean: Show navigation, true or false
+        random: false, // Boolean: Randomize the order of the slides, true or false
+        pause: false, // Boolean: Pause on hover, true or false
+        pauseControls: true, // Boolean: Pause when hovering controls, true or false
+        prevText: "Previous", // String: Text for the "previous" button
+        nextText: "Next", // String: Text for the "next" button
+        maxwidth: "", // Integer: Max-width of the slideshow, in pixels
+        navContainer: "", // Selector: Where controls should be appended to, default is after the 'ul'
+        manualControls: "", // Selector: Declare custom pager navigation
+        namespace: "rslides", // String: Change the default namespace used
+        before: function() {}, // Function: Before callback
+        after: function() {} // Function: After callback
     });
 
     /* ..............................................
@@ -84,7 +82,7 @@
     Gallery
     ................................................. */
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.popup-gallery').magnificPopup({
             delegate: 'a',
             type: 'image',
@@ -97,7 +95,7 @@
             },
             image: {
                 tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                titleSrc: function (item) {
+                titleSrc: function(item) {
                     return item.el.attr('title') + '<small>by Neeraj Jain</small>';
                 }
             }
@@ -108,7 +106,7 @@
     Smooth Scroll
     ................................................. */
 
-    $('a[href*="#"]:not([href="#"])').on('click', function () {
+    $('a[href*="#"]:not([href="#"])').on('click', function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -125,7 +123,7 @@
     Countdown Clock
     ................................................. */
     function makeTimer() {
-        var endTime = new Date("15 Jan 2020 10:00:00 GMT+05:30");
+        var endTime = new Date("21 Nov 2021 10:00:00 GMT+05:30");
         endTime = (Date.parse(endTime) / 1000);
 
         var now = new Date();
@@ -148,13 +146,21 @@
             seconds = "0" + seconds;
         }
 
+        if (days < 0) {
+            days = 0;
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            clearInterval(handle);
+        }
+
         $("#days").html(days + "<h6>Days</h6>");
         $("#hours").html(hours + "<h6>Hrs</h6>");
         $("#minutes").html(minutes + "<h6>Min</h6>");
         $("#seconds").html(seconds + "<h6>Sec</h6>");
     }
 
-    setInterval(function () {
+    var handle = setInterval(function() {
         makeTimer();
     }, 1000);
 
